@@ -1,0 +1,108 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 12;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0110D060 .scope module, "synchronous_ram_tb" "synchronous_ram_tb" 2 3;
+ .timescale -9 -12;
+P_01383124 .param/l "ADDR_WIDTH" 2 6, +C4<0100>;
+P_01383138 .param/l "DATA_WIDTH" 2 5, +C4<01000>;
+v01383398_0 .var "addr", 3 0;
+v01107D30_0 .var "clk", 0 0;
+v01107D88_0 .var "din", 7 0;
+v01107DE0_0 .net "dout", 7 0, v01101768_0; 1 drivers
+v01107E38_0 .var "re", 0 0;
+v01107E90_0 .var "we", 0 0;
+S_0110D1F8 .scope module, "uut" "synchronous_ram" 2 15, 3 3, S_0110D060;
+ .timescale -9 -12;
+P_01103294 .param/l "ADDR_WIDTH" 3 5, +C4<0100>;
+P_011032A8 .param/l "DATA_WIDTH" 3 4, +C4<01000>;
+v01103208_0 .net "addr", 3 0, v01383398_0; 1 drivers
+v011016B8_0 .net "clk", 0 0, v01107D30_0; 1 drivers
+v01101710_0 .net "din", 7 0, v01107D88_0; 1 drivers
+v01101768_0 .var "dout", 7 0;
+v01383290 .array "mem", 0 15, 7 0;
+v013832E8_0 .net "re", 0 0, v01107E38_0; 1 drivers
+v01383340_0 .net "we", 0 0, v01107E90_0; 1 drivers
+E_011088D0 .event posedge, v011016B8_0;
+    .scope S_0110D1F8;
+T_0 ;
+    %wait E_011088D0;
+    %load/v 8, v01383340_0, 1;
+    %jmp/0xz  T_0.0, 8;
+    %load/v 8, v01101710_0, 8;
+    %ix/getv 3, v01103208_0;
+    %jmp/1 t_0, 4;
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v01383290, 0, 8;
+t_0 ;
+T_0.0 ;
+    %load/v 8, v013832E8_0, 1;
+    %jmp/0xz  T_0.2, 8;
+    %ix/getv 3, v01103208_0;
+    %load/av 8, v01383290, 8;
+    %ix/load 0, 8, 0;
+    %assign/v0 v01101768_0, 0, 8;
+T_0.2 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0110D060;
+T_1 ;
+    %set/v v01107D30_0, 0, 1;
+T_1.0 ;
+    %delay 5000, 0;
+    %load/v 8, v01107D30_0, 1;
+    %inv 8, 1;
+    %set/v v01107D30_0, 8, 1;
+    %jmp T_1.0;
+    %end;
+    .thread T_1;
+    .scope S_0110D060;
+T_2 ;
+    %vpi_call 2 32 "$dumpfile", "synchronous_ram.vcd";
+    %vpi_call 2 33 "$dumpvars", 1'sb0, S_0110D060;
+    %set/v v01107E90_0, 0, 1;
+    %set/v v01107E38_0, 0, 1;
+    %set/v v01383398_0, 0, 4;
+    %set/v v01107D88_0, 0, 8;
+    %delay 10000, 0;
+    %set/v v01107E90_0, 1, 1;
+    %set/v v01107E38_0, 0, 1;
+    %movi 8, 3, 4;
+    %set/v v01383398_0, 8, 4;
+    %movi 8, 170, 8;
+    %set/v v01107D88_0, 8, 8;
+    %delay 10000, 0;
+    %movi 8, 4, 4;
+    %set/v v01383398_0, 8, 4;
+    %movi 8, 187, 8;
+    %set/v v01107D88_0, 8, 8;
+    %delay 10000, 0;
+    %movi 8, 5, 4;
+    %set/v v01383398_0, 8, 4;
+    %movi 8, 204, 8;
+    %set/v v01107D88_0, 8, 8;
+    %delay 10000, 0;
+    %set/v v01107E90_0, 0, 1;
+    %set/v v01107E38_0, 1, 1;
+    %movi 8, 3, 4;
+    %set/v v01383398_0, 8, 4;
+    %delay 10000, 0;
+    %movi 8, 4, 4;
+    %set/v v01383398_0, 8, 4;
+    %delay 10000, 0;
+    %movi 8, 5, 4;
+    %set/v v01383398_0, 8, 4;
+    %delay 10000, 0;
+    %vpi_call 2 51 "$display", "Simulation complete";
+    %vpi_call 2 52 "$finish";
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "synchronous_ram_tb.v";
+    "synchronous_ram.v";

@@ -48,3 +48,4 @@ To design, implement, and simulate a synchronous Random Access Memory (RAM) modu
 ---
 # output
 
+<img width="1920" height="996" alt="Image" src="https://github.com/user-attachments/assets/06bdec8d-adae-4679-b6d6-9f669b56c6d4" />
